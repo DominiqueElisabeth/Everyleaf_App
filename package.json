@@ -1,0 +1,8 @@
+{
+  "name": "task-app",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "3",
+    "jquery": "^3.6.0"
+  }
+}
