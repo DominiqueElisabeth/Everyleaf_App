@@ -4,11 +4,11 @@ RSpec.describe 'Task management function', type: :system do
     context 'When creating a new task' do
       it 'Should display created task' do
         visit new_task_path
-        save_and_open_page
-        fill_in 'Task_name', with: 'task1'
+
+        fill_in 'task_name', with: 'task1'
         fill_in 'task_description', with: 'description1'
-        click_button 'Create Task'
-        expect(page).to have_content 'Task was successfully created.'
+        click_button 'Register'
+        expect(page).to have_content 'The task was successfully created'
       end
     end
   end
