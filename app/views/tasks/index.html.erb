@@ -1,16 +1,19 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Tasks index</h1>
+<h1>Tasks List</h1>
 
-<nav class="navbar navbar-light bg-light">
-<%= form_with url: tasks_path, method: :get, html: {class: "form-inline"} , local: true do |form| %>
-  <%= form.label :task_name, "Task name:" %>
-  <%= form.text_field :task_name, class: "form-control mr-sm-2" %>
-  <%= form.label :status, "Status" %>
-  <%= form.select :status, options_for_select([[''],['unstarted'], ['in progress'], ['completed']]), class: "form-control mr-sm-2"%>
-
+<table>
+<tr>
+  <%= form_with url: tasks_path, method: :get, html: {class: "form-horizontal"} , local: true do |form| %>
+  <td><%= form.label :name, "Task Search"  %></td>
+  <td><%= form.text_field :name, size: "40x10"%></td>
+  <td><%= form.label :status, "Status Search" %></td>
+  <td><%= form.select :status, options_for_select([[''],['Not started'], ['In progress'], ['Completed']])%></td>
+  <td><%= form.submit value: "search", type: "submit" %></td>
+</tr>
 <% end %>
-</nav>
+
+</table>
 <br>
 
 <table>
@@ -33,14 +36,12 @@
         <td><%= task.priority %></td>
         <td><%= task.deadline %></td>
         <td><%= task.status %></td>
-        <td><%= link_to 'See', task, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to 'Edit', edit_task_path(task), data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Details', task, data: { confirm: 'Are you sure you want to see the task details?' } %></td>
+        <td><%= link_to 'Edit', edit_task_path(task), data: { confirm: 'Are you sure you want to edit the task?' } %></td>
+        <td><%= link_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure you want to delete the task?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Task', new_task_path %>
+<button class="btn btn-primary" type="button"><%= link_to 'Create a task', new_task_path %></button><br>

@@ -2,21 +2,21 @@
 RSpec.describe Task, type: :model do
 
  describe 'Validation test' do
-   context 'If the task Name is empty' do
-     it 'It is hard to Validation' do
+   context 'If the task name is empty' do
+     it 'The task cannot be validated' do
        task = Task.new(name: '', description: 'Failure test')
        expect(task).not_to be_valid
      end
    end
 
    context 'If the task details are empty' do
-     it 'Validation is caught' do
+     it 'The task cannot be validated' do
        task = Task.new(name: 'Task', description: '')
-       expect(task).to be_valid
+       expect(task).not_to be_valid
      end
    end
-   context 'If the task Title and details are described' do
-     it 'Validation passes' do
+   context 'If the task name and details are described' do
+     it 'The task can be validated' do
        task = Task.new(
          name: 'task1',
          description: 'Hello',
