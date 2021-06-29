@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Task details</h1>
+
+<p>
+  <strong>Name:</strong>
+  <%= @task.name %>
+</p>
+<p>
+  <strong>Description:</strong>
+  <%= @task.description %>
+</p>
+<p>
+  <strong>Priority:</strong>
+  <%= @task.priority %>
+</p>
+<p>
+  <strong>Deadline:</strong>
+  <%= @task.deadline %>
+</p>
+<p>
+  <strong>Status:</strong>
+  <%= @task.status %>
+</p>
+
+<%= link_to 'New Task', new_task_path %> |
+<%= link_to 'Back', tasks_path %>
