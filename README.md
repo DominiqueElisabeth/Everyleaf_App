@@ -12,7 +12,7 @@ Model : task
 | Status         | String        |
 | Deadline       | Date          |
 
-# How to deploy on heroku
+# How to deploy on Heroku
 
 - Creation of the app on heroku
 
