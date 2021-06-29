@@ -18,14 +18,21 @@ RSpec.describe 'Task management function', type: :system do
       end
     end
   end
-  describe 'Detailed display function' do
-     context 'When transitioned to any task details screen' do
-       it 'The content of the relevant task is displayed' do
-          task = Task.create(name: 'task1', description: 'description1')
+ describe 'Detailed display function' do
+    context 'When transitioned to any task details screen' do
+      it 'The content of the relevant task is displayed' do
+         task = Task.create(name: 'task1', description: 'description1')
+        visit tasks_path(task)
+        expect(page).to have_content 'task1'
+      end
+    end
 
-         visit tasks_path(task)
-         expect(page).to have_content 'task1'
-       end
-     end
+    context 'When the tasks are arranged in descending order of creation date and time' do
+          it 'A new task is displayed at the top' do
+            task = Task.create(name: 'task1', description: 'description1')
+            visit tasks_path
+            assert Task.all.order(created_at: "desc")
+      end
+    end
   end
 end
