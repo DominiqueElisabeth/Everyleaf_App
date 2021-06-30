@@ -1,9 +1,20 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[ show edit update destroy ]
 
+  PER = 5
   # GET /tasks or /tasks.json
   def index
+
     @tasks = Task.all
+    if params[:sort_expired]
+			@tasks = @tasks.order(deadline: :desc).page(params[:page]).per(PER)
+    elsif params[:sort_priority_high]
+      @tasks = @tasks.order(priority: :asc).page(params[:page]).per(PER)
+    elsif params[:search]
+      @tasks = Task.search_tasks(params[:search]).page(params[:page]).per(PER)
+    else
+      @tasks = @tasks.order(created_at: :desc).page(params[:page]).per(PER)
+    end
   end
 
   # GET /tasks/1 or /tasks/1.json
@@ -50,7 +61,7 @@ class TasksController < ApplicationController
   def destroy
     @task.destroy
     respond_to do |format|
-      format.html { redirect_to tasks_url, notice: "The task was successfully destroyed." }
+      format.html { redirect_to tasks_url, notice: "The task was successfully deleted." }
       format.json { head :no_content }
     end
   end

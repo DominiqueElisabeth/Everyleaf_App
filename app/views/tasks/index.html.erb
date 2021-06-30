@@ -1,13 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Tasks List</h1>
+<h1>General Tasks List</h1>
 
 <table>
 <tr>
   <%= form_with url: tasks_path, method: :get, html: {class: "form-horizontal"} , local: true do |form| %>
-  <td><%= form.label :name, "Task Search"  %></td>
+  <td><%= form.label :name, "Task name"  %></td>
   <td><%= form.text_field :name, size: "40x10"%></td>
-  <td><%= form.label :status, "Status Search" %></td>
+  <td><%= form.label :status, "Status" %></td>
   <td><%= form.select :status, options_for_select([[''],['Not started'], ['In progress'], ['Completed']])%></td>
   <td><%= form.submit value: "search", type: "submit" %></td>
 </tr>
@@ -16,15 +16,19 @@
 </table>
 <br>
 
-<table>
+<p>
+  <button type="button" class="btn btn-info btn-sm" id="sort_deadline"><%= link_to "Sort by end deadline", tasks_path(sort_expired: "true") %></button>
+  <button type="button" class="btn btn-info btn-sm" id="sort_priority"><%= link_to "Sort by priority", tasks_path(sort_priority_high: "true") %></button>
+  </p>
+
+<table class="col-md-12">
   <thead>
     <tr>
-      <th>Task name</th>
-      <th>Description</th>
-      <th>Priority</th>
-      <th>Deadline</th>
-      <th>Status</th>
-      <th colspan="3"></th>
+      <th class="col-md-2">Task name</th>
+      <th class="col-md-3">Description</th>
+      <th class="col-md-1">Priority</th>
+      <th class="col-md-1">Deadline</th>
+      <th class="col-md-1">Status</th>
     </tr>
   </thead>
 
@@ -41,7 +45,8 @@
         <td><%= link_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure you want to delete the task?' } %></td>
       </tr>
     <% end %>
+    <%= paginate @tasks %>
   </tbody>
-</table>
+ </table>
 
-<button class="btn btn-primary" type="button"><%= link_to 'Create a task', new_task_path %></button><br>
+ <button class="btn btn-primary" type="button"><%= link_to 'Create a task', new_task_path %></button>
