@@ -3,7 +3,7 @@ class Task < ApplicationRecord
   validates :description, presence: true , length: { in: 1..200 }
 
   	scope :name_search, -> (query) {where("name LIKE ?", "%#{query}%")}
-  	def task_name_search(query)
+  	def name_search(query)
   	  where("name LIKE ?", "%#{query}%")
   	end
 
