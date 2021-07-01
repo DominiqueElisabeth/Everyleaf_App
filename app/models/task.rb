@@ -21,4 +21,8 @@ class Task < ApplicationRecord
   	    END ASC,
   	    id DESC" )}
   	max_paginates_per 5
+<<<<<<< HEAD
   end
+=======
+  end
+>>>>>>> 91ed6176b969da475544b8cd8f1e6e9bda5b42f3

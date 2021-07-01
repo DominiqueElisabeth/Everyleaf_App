@@ -1,9 +1,15 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[ show edit update destroy ]
 
+<<<<<<< HEAD
    # GET /tasks or /tasks.json
    def index
       @tasks = Task.all
+=======
+  PER = 5
+  # GET /tasks or /tasks.json
+  def index
+>>>>>>> 91ed6176b969da475544b8cd8f1e6e9bda5b42f3
 
       if params[:sort_expired]
        @tasks = Task.all.order('deadline DESC').page params[:page]
@@ -11,6 +17,7 @@ class TasksController < ApplicationController
      if params[:status].present?
     @tasks = Task.all.name_search(params[:name]).status_search(params[:status]).page params[:page]
     else
+<<<<<<< HEAD
     @tasks = Task.all.name_search(params[:name]).page params[:page]
    end
   elsif params[:status].present?
@@ -21,6 +28,11 @@ class TasksController < ApplicationController
     @tasks = Task.all.order('created_at DESC').page params[:page]
    end
  end
+=======
+      @tasks = @tasks.order(created_at: :desc).page(params[:page]).per(PER)
+    end
+  end
+>>>>>>> 91ed6176b969da475544b8cd8f1e6e9bda5b42f3
 
   # GET /tasks/1 or /tasks/1.json
   def show
