@@ -1,38 +1,26 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[ show edit update destroy ]
 
-<<<<<<< HEAD
-   # GET /tasks or /tasks.json
-   def index
-      @tasks = Task.all
-=======
-  PER = 5
+   PER = 5
   # GET /tasks or /tasks.json
   def index
->>>>>>> 91ed6176b969da475544b8cd8f1e6e9bda5b42f3
-
+     @tasks = Task.all
       if params[:sort_expired]
        @tasks = Task.all.order('deadline DESC').page params[:page]
    elsif params[:name].present?
      if params[:status].present?
-    @tasks = Task.all.name_search(params[:name]).status_search(params[:status]).page params[:page]
+      @tasks = Task.all.name_search(params[:name]).status_search(params[:status]).page params[:page]
     else
-<<<<<<< HEAD
-    @tasks = Task.all.name_search(params[:name]).page params[:page]
-   end
+      @tasks = Task.all.name_search(params[:name]).page params[:page]
   elsif params[:status].present?
-    @tasks = Task.all.status_search(params[:status]).page params[:page]
+      @tasks = Task.all.status_search(params[:status]).page params[:page]
   elsif params[:sort_priority]
-    @tasks = Task.all.priority_ordered.page params[:page]
+      @tasks = Task.all.priority_ordered.page params[:page]
   else
-    @tasks = Task.all.order('created_at DESC').page params[:page]
-   end
- end
-=======
+      @tasks = Task.all.order('created_at DESC').page params[:page]
       @tasks = @tasks.order(created_at: :desc).page(params[:page]).per(PER)
     end
-  end
->>>>>>> 91ed6176b969da475544b8cd8f1e6e9bda5b42f3
+end
 
   # GET /tasks/1 or /tasks/1.json
   def show
