@@ -12,6 +12,7 @@ class TasksController < ApplicationController
       @tasks = Task.all.name_search(params[:name]).status_search(params[:status]).page params[:page]
     else
       @tasks = Task.all.name_search(params[:name]).page params[:page]
+    end 
   elsif params[:status].present?
       @tasks = Task.all.status_search(params[:status]).page params[:page]
   elsif params[:sort_priority]
