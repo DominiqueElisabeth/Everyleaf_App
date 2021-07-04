@@ -12,6 +12,15 @@
 | Status         | String        |
 | Deadline       | Date          |
 
+#### Model : user
+
+| Columns        | Descriptions  |
+| -------------- | ------------- |
+| Name           | String        |
+| email          | String        |
+| Password       | String        |
+| Password conf. | String        |
+
 ### How to deploy on Heroku
 
 #### Creation of the app on heroku

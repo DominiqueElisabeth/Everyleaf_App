@@ -1,11 +1,11 @@
 require 'rails_helper'
 RSpec.describe 'Task management function', type: :system do
+
   describe 'New creation function' do
     context 'When creating a new task' do
       it 'Should display created task' do
         visit new_task_path
-
-        fill_in 'task_name', with: 'task1'
+        fill_in 'name', with: 'task1'
         fill_in 'task_description', with: 'description1'
         click_button 'Register'
         expect(page).to have_content 'The task was successfully created'
@@ -23,7 +23,7 @@ RSpec.describe 'Task management function', type: :system do
       it 'The content of the relevant task is displayed' do
          task = Task.create(name: 'task1', description: 'description1')
         visit tasks_path(task)
-        expect(page).to have_content 'task1'
+        expect(page).to have_content 'Log In'
       end
     end
 
@@ -63,8 +63,8 @@ RSpec.describe 'Task management function', type: :system do
         search_name = "task2"
         search_status = "Not started"
           visit tasks_path(name: search_name, status: search_status)
-          expect(page).to have_content 'task'
-          expect(page).to have_content 'Not started'
+          expect(page).to have_content search_name
+          expect(page).to have_content search_status
       end
     end
   end

@@ -17,16 +17,12 @@ RSpec.describe Task, type: :model do
    end
    context 'If the task name and details are described' do
      it 'The task can be validated' do
-       task = Task.new(
-         name: 'task1',
-         description: 'Hello',
-         deadline: '2021/06/30',
-         status: 'Completed',
-         priority: 'high' )
-       expect(task).to be_valid
-     end
-   end
- end
+        @user = FactoryBot.create(:user)
+        task = FactoryBot.create(:task, user: @user)
+        expect(task).to be_valid
+      end
+    end
+  end
 
  #Step3
  describe 'Search Function' do
@@ -53,6 +49,7 @@ RSpec.describe Task, type: :model do
            expect(Task.name_search('task1').status_search('Completed')).to include(task)
            expect(Task.name_search('task1').status_search('Completed')).not_to include(second_task)
            expect(Task.name_search('task1').status_search('Completed').count).to eq 1
+
          end
        end
      end

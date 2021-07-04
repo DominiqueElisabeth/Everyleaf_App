@@ -12,6 +12,5 @@
       description { 'description2' }
       status { 'Not started' }
       deadline { DateTime.tomorrow }
-
     end
 end
