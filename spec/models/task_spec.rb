@@ -1,5 +1,19 @@
  require 'rails_helper'
 RSpec.describe Task, type: :model do
+  before do
+    FactoryBot.create(:user, name: 'ange',
+                             email: 'ange@gmail.com',
+                             password: 'password',
+                             password_confirmation: 'password')
+    visit new_session_path
+    fill_in 'email', with: 'ange@gmail.com'
+    fill_in 'password', with: 'password'
+    click_button 'Login'
+    @user = User.first
+    FactoryBot.create(:task, name: "name1", description: "content1", deadline: "2021/1/1", status:"Complete", priority: "Low", user_id: @user.id)
+    FactoryBot.create(:task, name: "name2", description: "content2", deadline: "2021/1/1", status:"Complete", priority: "Low", user_id: @user.id)
+    FactoryBot.create(:task, name: "name3", description: "content3", deadline: "2021/1/1", status:"Complete", priority: "Low", user_id: @user.id)
+    end
 
  describe 'Validation test' do
    context 'If the task name is empty' do

@@ -1,22 +1,30 @@
 class SessionsController < ApplicationController
   skip_before_action :login_required, only: [:new, :create]
   def new
+    if logged_in?
+      flash[:alert] = "Already Logged In!"
+      redirect_to tasks_path
+    end
   end
 
   def create
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
       session[:user_id] = user.id
-      redirect_to tasks_path()
+      if current_user.admin?
+         redirect_to admin_users_path
+      else
+      redirect_to user_path(user.id)
+      end
     else
-      flash.now[:danger] = 'I failed to login'
+      flash.now[:danger] = 'login failed'
       render :new
     end
   end
-
+  
   def destroy
     session.delete(:user_id)
-    flash.now[:notice] = 'Deconnected'
+    flash[:notice] = 'logged out'
     redirect_to new_session_path
   end
 end
