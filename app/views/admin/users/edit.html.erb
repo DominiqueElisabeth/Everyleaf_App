@@ -1,6 +1,5 @@
 <h1>Edit the user</h1>
-<div class="form">
-  <%= form_with(model: @user, local: true, url: admin_user_path) do |f| %>
+
     <% if @user.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@user.errors.count, "error") %> prohibited this <%= @user.name %> from being saved:</h2>
@@ -11,19 +10,31 @@
         </ul>
       </div>
     <% end %>
-    <br>
-    <%= f.text_field :name, placeholder: "Name..." %>
-    <br>
-    <br>
-    <%= f.email_field :email, placeholder: "Email..." %>
-    <br>
-    <br>
-    <%= f.password_field :password, placeholder: "Password..." %>
-    <br>
-    <br>
-    <%= f.password_field :password_confirmation, placeholder: "Password confirmation..." %>
-    <br>
-    <br>
-    <%= f.submit "Create my account", class: "submit" %>
+    <div class="form">
+      <%= form_with(model: @user, local: true, url: admin_user_path) do |form| %>
+    <div class="user_name">
+      <%= form.label :name %>
+      <%= form.text_field :name, placeholder: "Name..." %>
+    </div>
+    <div class="user_email">
+      <%= form.label :email %>
+      <%= form.email_field :email, placeholder: "Email..."  %>
+    </div>
+
+    <div class="user_password">
+      <%= form.label :password %>
+      <%= form.password_field :password, placeholder: "Password..."  %>
+    </div>
+    <div class="user_password">
+      <%= form.label :password_confirmation %>
+      <%= form.password_field :password_confirmation, placeholder: "Password..."  %>
+    </div>
+
+    <div class="user_admin">
+      <%= form.label :admin %>
+      <%= form.check_box :admin %>
+      <%#= check_box "user", "admin", {}, true, false %>
+    </div>
+    <%= form.submit "Create my account", class: "submit" %>
   <% end %>
 </div>

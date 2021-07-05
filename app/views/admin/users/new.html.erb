@@ -1,4 +1,6 @@
+
 <h1>Admin creates a user</h1>
+
 
 <div class="form">
   <%= form_with(model: @user, local: true, url: admin_users_path) do |f| %>
@@ -12,7 +14,6 @@
         </ul>
       </div>
     <% end %>
-
     <br>
     <%= f.text_field :name, id: "name", placeholder: "Name..." %>
     <br>
