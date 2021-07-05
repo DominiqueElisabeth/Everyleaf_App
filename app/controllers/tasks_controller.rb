@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:edit, :update, :show, :destroy]
+  before_action :set_task, only: %i[ show edit update destroy ]
 
    # GET /tasks or /tasks.json
   def index
@@ -39,12 +39,16 @@ end
     @task = Task.new(task_params)
     @task.user_id = current_user.id
  # @task = current_user.tasks.build(task_params)
+ if params[:back]
+  render :new
+  else
     if @task.save
     redirect_to tasks_path, notice: "The task was successfully created"
       else
          render :new
       end
      end
+   end
 
   # PATCH/PUT /tasks/1 or /tasks/1.json
   def update
@@ -74,6 +78,6 @@ end
   end
 
 	def task_params
-		params.require(:task).permit(:name, :description, :status, :priority, :deadline, :user_id)
+		params.require(:task).permit(:name, :description, :status, :priority, :deadline)
 	end
   end
