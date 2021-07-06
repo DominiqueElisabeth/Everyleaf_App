@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[ show edit update destroy ]
-
+PER = 5
    # GET /tasks or /tasks.json
   def index
      @tasks = Task.user_task_list(current_user.id)
@@ -18,6 +18,7 @@ class TasksController < ApplicationController
       @tasks = @tasks.priority_ordered.page params[:page]
   else
       @tasks = @tasks.order('created_at DESC').page params[:page]
+      @tasks = @tasks.order(created_at: :desc).page(params[:page]).per(PER)
     end
 end
 

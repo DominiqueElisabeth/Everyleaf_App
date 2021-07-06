@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 2021_07_01_152407) do
     t.string "name"
     t.string "description"
     t.string "status"
-    t.string "priority"
+    t.integer "priority"
     t.date "deadline"
     t.bigint "user_id"
     t.index ["name"], name: "index_tasks_on_name"

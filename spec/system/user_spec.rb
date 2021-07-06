@@ -33,7 +33,7 @@ RSpec.describe 'User management function', type: :system do
           fill_in 'password', with: @user.password
         click_button "Login"
         visit user_path (@user.id)
-        expect(page).to have_content 'General Tasks List'
+        expect(page).to have_content 'New task'
       end
     end
     context 'When the user tries to jump to your details screen' do
