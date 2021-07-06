@@ -5,6 +5,7 @@
       description { 'description1' }
       status { 'Completed' }
       deadline { DateTime.now }
+      association :user
     end
 
     factory :second_task, class: Task do
@@ -12,6 +13,6 @@
       description { 'description2' }
       status { 'Not started' }
       deadline { DateTime.tomorrow }
-
+      association :user
     end
 end
