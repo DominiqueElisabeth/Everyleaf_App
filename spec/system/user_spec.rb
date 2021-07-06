@@ -29,9 +29,10 @@ RSpec.describe 'User management function', type: :system do
       it 'Login is a success' do
 
           visit new_session_path
-          fill_in 'session[email]', with: 'admin2@example.com'
-          fill_in 'session[password]', with: '00000000'
+          fill_in 'email', with: @user.email
+          fill_in 'password', with: @user.password
         click_button "Login"
+        visit user_path (@user.id)
         expect(page).to have_content 'General Tasks List'
       end
     end
