@@ -46,8 +46,8 @@ $ heroku buildpacks:add --index 1 heroku/nodejs
 ```
 $ rails assets:precompile RAILS_ENV=production
 $ git add -A
-$ git commit -m "step2-update"
-$ git push heroku step2:master
+$ git commit -m "update"
+$ git push heroku master
 ```
 
 #### Migration and open app link
