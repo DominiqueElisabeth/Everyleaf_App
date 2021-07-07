@@ -26,6 +26,12 @@ User.create!( name: "admin",
 10.times do |id|
  Label.create!(
         id: id,
-        title: Faker::Verb.past_participle,
+        name: Faker::Verb.past_participle,
     )
 end
+
+labellings_list = []
+Task.all.ids.each do |task_id|
+  labellings_list << { task_id: task_id, labelling_id: rand(1..10) }
+end
+Labelling.create!(labellings_list)

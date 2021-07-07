@@ -31,12 +31,8 @@ end
 
   # GET /tasks/new
   def new
-    if current_user == nil
-     redirect_to new_user_path, notice: "Please log in or use Task after setting a new user."
-   else
-    @task = Task.new
-  end
-end
+    @task = current_user.tasks.new
+   end
 
   # GET /tasks/1/edit
   def edit
@@ -82,7 +78,7 @@ end
 
   private
   def set_task
-    @task = Task.find(params[:id])
+    @task = current_user.tasks.includes(:labels).find(params[:id])
   end
 
 	def task_params

@@ -21,9 +21,8 @@ class Task < ApplicationRecord
     def user_task_list(query)
       where(user_id: query)
     end
-    scope :label_task_search, -> (query) {
-		@ids = Labelling.where(label_id: query).pluck(:task_id)
-		where(id: @ids)}
+
+    scope :label_search, -> (query) {joins(:labels).where('labels.id = ?', data)}
 
   	scope :priority_ordered, -> {order("
   	    CASE tasks.priority

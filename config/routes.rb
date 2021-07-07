@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :users, only: [:index, :show, :new, :create, :destroy, :edit, :update] do
+    resources :labels
     end
   end
   root 'sessions#new'
