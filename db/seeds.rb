@@ -13,15 +13,15 @@
 	    password: "password",
 	    password_confirmation: "password",
 	)
-end
+ end
 
-10.times do |index|
-User.create!( name: "admin",
-                email: "admin@gmail.com",
-                password: "123456",
-                password_confirmation: "123456",
-                admin: true )
-		end
+ 10.times do |index|
+ User.create!( name: "admin",
+                 email: "admin@gmail.com",
+                 password: "123456",
+                 password_confirmation: "123456",
+                 admin: true )
+ 		end
 
 10.times do |id|
  Label.create!(
@@ -31,5 +31,5 @@ User.create!( name: "admin",
 end
 
 10.times do |n|
-    Labeling.create!(task_id: rand(1..20), label_id: rand(1..3))
+    Labelling.create!(task_id: rand(1..20), label_id: rand(1..3))
  end
