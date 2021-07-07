@@ -40,9 +40,9 @@ RSpec.describe 'Label management function', type: :system do
         fill_in 'email', with: @user.email
         fill_in 'password', with: @user.password
         click_button "Login"
-        search_label = "Label 1"
+        label_search = "Label 1"
         visit tasks_path(label_id: @label.id)
-        expect(page).to have_content search_label
+        expect(page).to have_content label_search
       end
     end
   end

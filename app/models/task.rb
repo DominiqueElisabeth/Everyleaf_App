@@ -22,7 +22,9 @@ class Task < ApplicationRecord
       where(user_id: query)
     end
 
-    scope :label_search, -> (query) {joins(:labels).where('labels.id = ?', data)}
+    scope :label_search, -> (query) {
+		@ids = Labelling.where(label_id: query).pluck(:task_id)
+		where(id: @ids)}
 
   	scope :priority_ordered, -> {order("
   	    CASE tasks.priority

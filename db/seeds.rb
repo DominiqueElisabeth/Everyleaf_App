@@ -30,8 +30,6 @@ User.create!( name: "admin",
     )
 end
 
-labellings_list = []
-Task.all.ids.each do |task_id|
-  labellings_list << { task_id: task_id, labelling_id: rand(1..10) }
-end
-Labelling.create!(labellings_list)
+10.times do |n|
+    Labeling.create!(task_id: rand(1..20), label_id: rand(1..3))
+ end
