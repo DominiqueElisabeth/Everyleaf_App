@@ -22,3 +22,10 @@ User.create!( name: "admin",
                 password_confirmation: "123456",
                 admin: true )
 		end
+
+10.times do |id|
+ Label.create!(
+        id: id,
+        title: Faker::Verb.past_participle,
+    )
+end

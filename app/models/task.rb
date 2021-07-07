@@ -1,12 +1,13 @@
 class Task < ApplicationRecord
   belongs_to :user
-  # validates :user_id, presence: true
+  has_many :labellings, dependent: :destroy
+	has_many :labels, through: :labellings
 
   validates :name, presence: true
   validates :description, presence: true , length: { in: 1..200 }
 
   enum priority: [:low, :medium, :high]
-  
+
   	scope :name_search, -> (query) {where("name LIKE ?", "%#{query}%")}
   	def name_search(query)
   	  where("name LIKE ?", "%#{query}%")
@@ -20,6 +21,9 @@ class Task < ApplicationRecord
     def user_task_list(query)
       where(user_id: query)
     end
+    scope :label_task_search, -> (query) {
+		@ids = Labelling.where(label_id: query).pluck(:task_id)
+		where(id: @ids)}
 
   	scope :priority_ordered, -> {order("
   	    CASE tasks.priority

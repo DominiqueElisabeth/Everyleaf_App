@@ -14,6 +14,8 @@ PER = 5
     end
   elsif params[:status].present?
       @tasks = @tasks.status_search(params[:status]).page params[:page]
+  elsif params[:label_id].present?
+      @tasks = @tasks.label_task_search(params[:label_id]).page params[:page]
   elsif params[:sort_priority]
       @tasks = @tasks.priority_ordered.page params[:page]
   else
@@ -24,12 +26,17 @@ end
 
   # GET /tasks/1 or /tasks/1.json
   def show
+     @labels = @task.labels
   end
 
   # GET /tasks/new
   def new
+    if current_user == nil
+     redirect_to new_user_path, notice: "Please log in or use Task after setting a new user."
+   else
     @task = Task.new
   end
+end
 
   # GET /tasks/1/edit
   def edit
@@ -79,6 +86,6 @@ end
   end
 
 	def task_params
-		params.require(:task).permit(:name, :description, :status, :priority, :deadline)
+		params.require(:task).permit(:name, :description, :status, :priority, :deadline, label_ids: [])
 	end
   end

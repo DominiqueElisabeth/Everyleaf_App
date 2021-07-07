@@ -1,25 +1,37 @@
-# README File
+# How to complete this assignment
 
 ## App Schema
 
+### Models used
+
 #### Model : task
+> belongs_to :user
+> has_many :labels
 
 | Columns        | Descriptions  |
 | -------------- | ------------- |
 | Name           | String        |
 | Description    | String        |
-| Priority       | String        |
+| Priority       | Integer       |
 | Status         | String        |
 | Deadline       | Date          |
 
 #### Model : user
+> has_many :tasks
 
 | Columns        | Descriptions  |
 | -------------- | ------------- |
 | Name           | String        |
 | email          | String        |
 | Password       | String        |
-| Password conf. | String        |
+
+#### Model : label
+> has_many :tasks
+
+| Columns        | Descriptions  |
+| -------------- | ------------- |
+| User_id        | Integer       |
+| Name           | String        |
 
 ### How to deploy on Heroku
 
@@ -34,8 +46,8 @@ $ heroku buildpacks:add --index 1 heroku/nodejs
 ```
 $ rails assets:precompile RAILS_ENV=production
 $ git add -A
-$ git commit -m "message"
-$ git push heroku master
+$ git commit -m "step2-update"
+$ git push heroku step2:master
 ```
 
 #### Migration and open app link
@@ -44,7 +56,7 @@ $ heroku run:detached rails db:migrate
 $ heroku open app
 ```
 
-#### List of gems required
+### List of gems required
 ```
 gem 'rails', '~> 5.2.6'
 gem 'pg', '>= 0.18', '< 2.0'
