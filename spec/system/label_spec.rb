@@ -3,7 +3,6 @@ RSpec.describe 'Label management function', type: :system do
   describe 'New creation function' do
     before do
       @user = FactoryBot.create(:user)
-      #@labelling = FactoryBot.create(:labelling)
       @label = FactoryBot.create(:label)
       @label2 = FactoryBot.create(:label2)
     end
