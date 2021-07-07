@@ -10,9 +10,9 @@ RSpec.describe 'Task management function', type: :system do
     fill_in 'password', with: 'password'
     click_button 'Login'
     @user = User.first
-    FactoryBot.create(:task, name: "name1", description: "content1", deadline: "2021/1/1", status:"Complete", priority: "Low", user_id: @user.id)
-    FactoryBot.create(:task, name: "name2", description: "content2", deadline: "2021/1/1", status:"Complete", priority: "Low", user_id: @user.id)
-    FactoryBot.create(:task, name: "name3", description: "content3", deadline: "2021/1/1", status:"Complete", priority: "Low", user_id: @user.id)
+    FactoryBot.create(:task, name: "name1", description: "content1", deadline: "2021/1/1", status:"Completed", priority: "low", user_id: @user.id)
+    FactoryBot.create(:task, name: "name2", description: "content2", deadline: "2021/1/1", status:"Completed", priority: "low", user_id: @user.id)
+    FactoryBot.create(:task, name: "name3", description: "content3", deadline: "2021/1/1", status:"Completed", priority: "low", user_id: @user.id)
   end
   describe 'New creation function' do
     context 'When creating a new task' do

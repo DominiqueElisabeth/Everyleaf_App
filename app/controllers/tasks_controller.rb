@@ -14,6 +14,8 @@ PER = 5
     end
   elsif params[:status].present?
       @tasks = @tasks.status_search(params[:status]).page params[:page]
+  elsif params[:label_id].present?
+      @tasks = @tasks.label_search(params[:label_id]).page params[:page]
   elsif params[:sort_priority]
       @tasks = @tasks.priority_ordered.page params[:page]
   else
@@ -23,13 +25,13 @@ PER = 5
 end
 
   # GET /tasks/1 or /tasks/1.json
-  def show
+ def show
   end
 
   # GET /tasks/new
   def new
-    @task = Task.new
-  end
+     @task = Task.new
+   end
 
   # GET /tasks/1/edit
   def edit
@@ -75,10 +77,10 @@ end
 
   private
   def set_task
-    @task = Task.find(params[:id])
+    @task = current_user.tasks.find(params[:id])
   end
 
 	def task_params
-		params.require(:task).permit(:name, :description, :status, :priority, :deadline)
+		params.require(:task).permit(:name, :description, :status, :priority, :deadline, label_ids: [])
 	end
   end
