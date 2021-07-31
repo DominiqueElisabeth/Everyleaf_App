@@ -1,4 +1,4 @@
-# How to complete this assignment
+# Eeryleaf app
 
 ## App Schema
 
