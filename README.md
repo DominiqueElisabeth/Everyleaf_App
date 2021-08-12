@@ -1,4 +1,4 @@
-# Eeryleaf app
+# Everyleaf app
 
 ## App Schema
 
